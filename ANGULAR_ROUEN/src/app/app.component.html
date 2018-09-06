@@ -1,0 +1,26 @@
+<!-- Data Binding cpm => vue -->
+<h1>{{title}}</h1>
+
+<!-- Boucle sur une collection de données cpm => vue -->
+<ul>
+  <li *ngFor="let item of collection">{{item}}</li>
+</ul>
+
+<!-- Binding de l'événement 'click' cpm <= vue -->
+<h2 (click)="toggleBoxe()">Titre Lorem</h2>
+
+<!-- Utilisation d'un if dans la vue cpm => vue -->
+<p *ngIf="isOpen">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At modi repudiandae id, magnam illum delectus beatae consectetur minima, doloribus ea itaque aspernatur fugit numquam incidunt, reiciendis nihil nulla sit voluptatum.</p>
+
+<!-- Manipulation des class -->
+<p 
+  [ngClass]="{ 'redColor': addClass }"
+  (mouseover)="addClass = true"
+  (mouseleave)="addClass = false"
+>
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi adipisci perspiciatis repellendus consequuntur iusto. Quia laborum quos aperiam officiis quae sequi minus? Qui eaque nesciunt sed tempore necessitatibus sunt magni!
+</p>
+
+<!-- Data binding cmp <=> vue -->
+<input type="text" [(ngModel)]="userName">
+<h2>{{userName}}</h2>sp

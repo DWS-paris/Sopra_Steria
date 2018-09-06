@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Tammudu');
+
+/* 
+Reset
+*/
+    :root{
+        --main-color: red;
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html{
+        font-size: 62.5%;
+    }
+
+    body{
+        font: 1.5rem sans-serif;
+        line-height: 1.4;
+        font-weight: 100;
+        padding: 5rem;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: antialiased;
+        -ms-font-smoothing: antialiased;
+        -o-font-smoothing: antialiased;
+    }
+
+    h1{
+        font-family: 'Baloo Tammudu', cursive;
+        font-size: 5rem;
+    }
+
+    img{
+        max-width: 100%;
+    }
+
+    a{
+        font-weight: 500;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    ul, ol{
+        list-style: none;
+    }
+/**/
+
+
+/* 
+Navigation 
+*/
+    nav li:not(:last-child){
+        margin-right: 1rem;
+    }
+/**/
+
+
+/* 
+Layout
+*/
+    .flexBoxes{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .flexAround{
+        justify-content: space-around;
+    }
+
+    .flexCenter{
+        align-items: center;
+    }
+/**/
+
+
+/* 
+Forms
+*/
+    input:not([type="checkbox"]), button{
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    label{
+        font-weight: 800;
+    }
+
+    label span{ 
+        color: var(--main-color);
+        padding-left: 1rem; 
+    }
+/**/

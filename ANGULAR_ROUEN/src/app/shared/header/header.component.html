@@ -1,0 +1,15 @@
+<header>
+  <h1>{{mainTitle}}</h1>
+  <nav>
+    <ul class="flexBoxes">
+      <li *ngFor="let item of navCollection">
+        <a 
+          [routerLink]="item.path"
+          [ngClass]="{ 'isActive': item.isActive }"
+        >
+          {{item.name}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

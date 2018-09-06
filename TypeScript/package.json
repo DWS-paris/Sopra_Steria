@@ -1,0 +1,10 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc typings/* --outDir js --watch --pretty"
+  },
+  "author": "Julien Noyer",
+  "license": "WTFPL"
+}
