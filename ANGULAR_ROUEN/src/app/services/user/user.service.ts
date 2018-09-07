@@ -35,8 +35,16 @@ Configuration et export
     /*
     Méthodes
     */
+      // Créer une fonction pour charger la liste des utilisateurs
       public getUsers = (): Promise<any> => {
         return this.HttpClient.get( `${this.apiUrl}` )
+          .toPromise().then(this.getData).catch(this.handleError)
+      }
+
+      // Créer une fonction pour chager les données d'un utilisateur
+      public getSingle = ( _id: number ): Promise<any> => {
+        return this.HttpClient.get(
+          `${this.apiUrl}?id=${_id}`)
           .toPromise().then(this.getData).catch(this.handleError)
       }
     //

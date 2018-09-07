@@ -1,3 +1,16 @@
-<p>
-  single-user-page works!
-</p>
+<app-header></app-header>
+
+<!-- Attendre le retour de l'api avant d'afficher les données -->
+<main *ngIf="singleUser">
+    <section>
+        <h2 [textContent]="pageTitle"></h2>
+        <article>
+            <h3 [textContent]="singleUser.userName"></h3>
+            <ul class="flexBoxes">
+                <li [textContent]="singleUser.email"></li>
+                <li [textContent]="singleUser.password"></li>
+            </ul>
+            <button [textContent]="editButton"></button>
+        </article>
+    </section>
+</main>
