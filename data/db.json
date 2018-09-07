@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "id": 0,
+      "userName": "Julien Noyer",
+      "email": "jul@ien.com",
+      "password": "azertyuiop"
+    },
+    {
+      "userName": "Paul Bismuth",
+      "email": "paul@1tourtelle.com",
+      "password": "qwertyuiop",
+      "id": 1
+    }
+  ]
+}

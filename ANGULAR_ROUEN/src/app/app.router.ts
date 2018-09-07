@@ -17,6 +17,16 @@ Définir les routes dans un tableau de Routes
         {
             path: 'news',
             loadChildren: './pages/news-page/module#Module' // Lazy Load
+        },
+
+        {
+            path: 'users',
+            loadChildren: './pages/user-list/module#Module' // Lazy Load
+        },
+        {
+            // Définir une route avec paramêtre
+            path:'single-user/:id',
+            loadChildren: './pages/single-user-page/module#Module' // Lazy Load
         }
     ];
 //

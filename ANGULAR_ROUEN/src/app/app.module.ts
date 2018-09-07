@@ -6,6 +6,7 @@ Import
   import { NgModule } from '@angular/core';
   import { FormsModule } from "@angular/forms";
   import { RouterModule } from '@angular/router';
+  import { HttpClientModule } from "@angular/common/http";
 
   // Inner
   import { AppComponent } from './app.component';
@@ -20,7 +21,7 @@ Configuration en export
       AppComponent
     ],
     imports: [
-      BrowserModule, FormsModule, AppRouterModule, RouterModule
+      BrowserModule, FormsModule, AppRouterModule, RouterModule, HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent] 

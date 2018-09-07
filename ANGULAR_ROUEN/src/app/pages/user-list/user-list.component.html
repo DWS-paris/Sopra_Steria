@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<main>
+    <section>
+        <h2 [textContent]="pageTitle"></h2>
+        <ul>
+            <!-- Bboucle sur une collection de données -->
+            <li *ngFor="let item of userCollection" class="flexBoxes flexBetween">
+                <p [textContent]="item.userName"></p>
+                <p>
+                    <i class="fas fa-eye" (click)="changeRoute(item.id)"></i>
+                    <i class="fas fa-eraser"></i>
+                </p>
+            </li>
+        </ul>
+    </section>
+</main>

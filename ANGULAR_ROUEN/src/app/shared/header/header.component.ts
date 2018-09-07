@@ -52,6 +52,11 @@ Export
             isActive: false,
             name: 'Actualités',
             path: '/news'
+          },
+          {
+            isActive: false,
+            name: 'Utilisateurs',
+            path: '/users'
           }
         ]
       };

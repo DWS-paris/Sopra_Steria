@@ -3,11 +3,10 @@ Import
 */
     // Angular
     import { NgModule } from "@angular/core";
-    import { FormsModule } from "@angular/forms"; //=> Obligatoire pour l'utilisation du [(ngModel)]
     import { CommonModule } from "@angular/common"; //=> Obligatoire pour ngClass, ngIf, ...
 
     // Inner
-    import { HomePageComponent } from "./home-page.component";
+    import { SingleUserPageComponent } from "./single-user-page.component";
     import { ComponentRouter } from "./route";
     import { HeaderModule } from "../../shared/header/module";
 //
@@ -17,8 +16,8 @@ Import
 Définition
 */
     @NgModule({
-        declarations: [ HomePageComponent ],
-        imports: [ ComponentRouter, FormsModule, CommonModule, HeaderModule ]
+        declarations: [ SingleUserPageComponent ],
+        imports: [ ComponentRouter, CommonModule, HeaderModule ]
     })
 //
 

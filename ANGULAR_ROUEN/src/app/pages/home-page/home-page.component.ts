@@ -3,14 +3,34 @@ Import et configuration
 */
   // Angular
   import { Component, OnInit } from '@angular/core';
+  import { Router } from "@angular/router";
 
   // Inner
+  import { AuthService } from "../../services/auth/auth.service"; // #1 Importer le/les service/s
   import { RegisterModel } from "../../shared/_models/register.model";
+  import { UserModel } from "../../shared/_models/user.model";
+  import { LoginModel } from "../../shared/_models/login.model";
 
   // Configuration
   @Component({
     selector: 'app-home-page',
-    templateUrl: './home-page.component.html'
+    templateUrl: './home-page.component.html',
+
+    // #2 Ajouter le/les service/s dans le tableau des providers
+    providers: [ AuthService ],
+
+    styles: [`
+      form{
+        height: 0;
+        overflow: hidden;
+        transition: height .3s;
+      }
+
+      .isOpen{
+        height: 35rem;
+        overflow: auto;
+      }
+    `]
   })
 //
 
@@ -23,19 +43,32 @@ Export
     Variables
     */
       public pageTitle: string;
-      public formData: RegisterModel;
+      public pageSubTitle: string;
+      public registerFormData: RegisterModel;
+      public loginFormData: LoginModel;
       private formError: number;
+      private newUser: UserModel;
+      public formToggle: any;
     //
 
 
     /*
     Ajouter des valeurs aux variables
     */
-    constructor() {
-      this.pageTitle = `Formulaire d'inscription`;
-      
-      
-    };
+      constructor(
+        // Injecter le/les service/s dans le constructor
+        private AuthService: AuthService,
+        // Injecter le Router
+        private Router: Router
+      ) {
+        // Ajouter des valeurs aux variables
+        this.pageTitle = `Formulaire d'inscription`;
+        this.pageSubTitle = `Formulaire de connexion`;
+        this.formToggle = {
+          register: false,
+          login: false
+        };
+      };
     //
 
 
@@ -44,7 +77,7 @@ Export
     */
       // Créer une fonction pour initialiser le formulaire
       private formInit = () => {
-        this.formData = {
+        this.registerFormData = {
           userEmail: {
             label: `Votre email`,
             value: ``
@@ -65,33 +98,85 @@ Export
             label: `Accépter les CDG`,
             value: false
           }
-        }
-      }
+        };
+
+        this.loginFormData = {
+          email: {
+            label: 'Votre email',
+            value: ''
+          },
+          password: {
+            label: 'Votre mot de passe',
+            value: ''
+          }
+        };
+      };
 
       // Créer une fonction pour l'inscription d'un utilisateur
       public registerUser = () => {
         // Initialiser la variable formError
         this.formError = 0;
         
-        // Vérifier les données de l'objet formData
-        this.formData.userName.value.length < 2 ? this.addError(this.formData.userName) : null;
-        this.formData.userEmail.value.length < 5 ? this.addError(this.formData.userEmail) : null;
-        this.formData.userPassword.value.length < 5 ? this.addError(this.formData.userPassword) : null;
-        this.formData.userRepeatPassword.value !== this.formData.userPassword.value ? this.addError(this.formData.userRepeatPassword) : null;
-        this.formData.userTos.value === false ? this.addError(this.formData.userTos) : null;
+        // Vérifier les données de l'objet registerFormData
+        this.registerFormData.userName.value.length < 2 ? this.addError(this.registerFormData.userName) : null;
+        this.registerFormData.userEmail.value.length < 6 ? this.addError(this.registerFormData.userEmail) : null;
+        this.registerFormData.userPassword.value.length < 5 ? this.addError(this.registerFormData.userPassword) : null;
+        this.registerFormData.userRepeatPassword.value !== this.registerFormData.userPassword.value ? this.addError(this.registerFormData.userRepeatPassword) : null;
+        this.registerFormData.userTos.value === false ? this.addError(this.registerFormData.userTos) : null;
 
         // Validation finale
         if( this.formError === 0 ){
           console.log('OK formulaire');
 
-          // Inscrire le user depuis une API
+          // Ajouter les données dans l'objet newUser
+          this.newUser = {
+            email: this.registerFormData.userEmail.value,
+            password: this.registerFormData.userPassword.value,
+            userName: this.registerFormData.userName.value
+          };
 
-          // Réinitialiser le formulaire
-          this.formInit();
+          // Contacter le service pour ajouter un utilisateur
+          this.AuthService.registerUser(this.newUser)
+          .then( apiResponse => {
+            console.log(apiResponse)
+
+            // Réinitialiser le formulaire
+            this.formInit();
+          })
+          .catch( apiResponse => console.error(apiResponse) );
         }
       };
 
-      // Créer une fonction pour ajouter une erreur au formData
+      // Créer une fonction pour la connexion d'un utilisateur
+      public logUser = () => {
+        // Initialiser formError
+        this.formError = 0;
+
+        // Vérifier la valeur des champs du formulaire
+        this.loginFormData.email.value.length < 6 ? this.addError(this.loginFormData.email) : null;
+        this.loginFormData.password.value.length < 2 ? this.addError(this.loginFormData.password) : null;
+
+        // Validation finale
+        if( this.formError === 0 ){
+          console.log('OK login')
+
+          // Contacter l'api
+          this.AuthService.logUser(this.loginFormData)
+          .then( apiResponse => {
+            
+            // Rediriger l'utilisateur connecté
+            apiResponse.length === 1 ? this.Router.navigateByUrl('/news') : false
+
+            // Vider le formulaire
+            this.formInit();
+          })
+          .catch( apiResponse => {
+            console.error(apiResponse)
+          })
+        }
+      }
+
+      // Créer une fonction pour ajouter une erreur au registerFormData
       private addError = ( object ) => {
         // Ajouter 1 à formError
         this.formError++;
