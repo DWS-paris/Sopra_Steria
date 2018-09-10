@@ -1,5 +1,22 @@
 <app-header></app-header>
 
-<p>
-  news-page works!
-</p>
+<main>
+  <section *ngIf="sourcesCollection">
+
+    <select [(ngModel)]="defaultSource" (change)="getArticles($event.target.value)">
+      <option *ngFor="let item of sourcesCollection" [value]="item.id" [textContent]="item.name"></option>
+    </select>
+
+  </section>
+
+  <section *ngIf="articlesCollection">
+    
+    <article *ngFor="let item of articlesCollection">
+      <h2 [innerHTML]="item.title"></h2>
+      <img [src]="item.urlToImage || '/assets/img/jurassic-error.jpg'" [alt]="item.title">
+      <p [innerHTML]="item.description"></p>
+      <a *ngIf="item.url" [href]="item.url" [innerText]="'Lire la suite...'" target="_blank"></a>
+    </article>
+
+  </section>
+</main>

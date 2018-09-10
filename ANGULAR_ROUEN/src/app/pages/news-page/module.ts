@@ -3,6 +3,8 @@ Import
 */
     // Angular
     import { NgModule } from "@angular/core";
+    import { CommonModule } from "@angular/common";
+    import { FormsModule } from "@angular/forms";
 
     // Inner
     import { NewsPageComponent } from "./news-page.component";
@@ -16,7 +18,7 @@ Définition
 */
     @NgModule({
         declarations: [ NewsPageComponent ],
-        imports: [ ComponentRouter, HeaderModule ]
+        imports: [ CommonModule, FormsModule, ComponentRouter, HeaderModule ]
     })
 //
 
