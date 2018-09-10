@@ -20,7 +20,7 @@ Import et configuration
     providers: [ AuthService ],
 
     styles: [`
-      form{
+      form, app-user-form{
         height: 0;
         overflow: hidden;
         transition: height .3s;
@@ -113,26 +113,15 @@ Export
       };
 
       // Créer une fonction pour l'inscription d'un utilisateur
-      public registerUser = () => {
-        // Initialiser la variable formError
-        this.formError = 0;
+      public registerUser = ( event: RegisterModel ) => {
         
-        // Vérifier les données de l'objet registerFormData
-        this.registerFormData.userName.value.length < 2 ? this.addError(this.registerFormData.userName) : null;
-        this.registerFormData.userEmail.value.length < 6 ? this.addError(this.registerFormData.userEmail) : null;
-        this.registerFormData.userPassword.value.length < 5 ? this.addError(this.registerFormData.userPassword) : null;
-        this.registerFormData.userRepeatPassword.value !== this.registerFormData.userPassword.value ? this.addError(this.registerFormData.userRepeatPassword) : null;
-        this.registerFormData.userTos.value === false ? this.addError(this.registerFormData.userTos) : null;
-
-        // Validation finale
-        if( this.formError === 0 ){
-          console.log('OK formulaire');
+        console.log('PARENT', event)
 
           // Ajouter les données dans l'objet newUser
           this.newUser = {
-            email: this.registerFormData.userEmail.value,
-            password: this.registerFormData.userPassword.value,
-            userName: this.registerFormData.userName.value
+            email: event.userEmail.value,
+            password: event.userPassword.value,
+            userName: event.userName.value
           };
 
           // Contacter le service pour ajouter un utilisateur
@@ -144,7 +133,6 @@ Export
             this.formInit();
           })
           .catch( apiResponse => console.error(apiResponse) );
-        }
       };
 
       // Créer une fonction pour la connexion d'un utilisateur

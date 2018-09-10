@@ -10,6 +10,7 @@ Import
     import { HomePageComponent } from "./home-page.component";
     import { ComponentRouter } from "./route";
     import { HeaderModule } from "../../shared/header/module";
+    import { UserFormModule } from "../../shared/user-form/module";
 //
 
 
@@ -18,7 +19,7 @@ Définition
 */
     @NgModule({
         declarations: [ HomePageComponent ],
-        imports: [ ComponentRouter, FormsModule, CommonModule, HeaderModule ]
+        imports: [ ComponentRouter, FormsModule, CommonModule, HeaderModule, UserFormModule ]
     })
 //
 

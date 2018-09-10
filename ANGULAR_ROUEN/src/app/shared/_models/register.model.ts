@@ -11,11 +11,11 @@ export interface RegisterModel {
         label: string,
         value: string
     },
-    userRepeatPassword: {
+    userRepeatPassword?: { // Paramêtre optionnel
         label: string,
         value: string
     },
-    userTos: {
+    userTos?: { // Paramêtre optionnel
         label: string,
         value: boolean
     }

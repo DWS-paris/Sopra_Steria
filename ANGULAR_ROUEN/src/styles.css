@@ -48,6 +48,10 @@ Reset
     ul, ol{
         list-style: none;
     }
+
+    app-user-form{
+        display: block;
+    }
 /**/
 
 

@@ -1,0 +1,28 @@
+<form (submit)="registerUser()"> 
+
+  <label [innerHTML]="formData.userName.label"></label>
+  <input 
+    type="text" 
+    name="userName"
+
+    [(ngModel)]="formData.userName.value"
+    (focus)="deleteError(formData.userName, 'Nom complet')"
+  >
+  
+  <label [innerHTML]="formData.userEmail.label"></label>
+  <input type="email" [(ngModel)]="formData.userEmail.value" name="userEmail" (focus)="deleteError(formData.userEmail, 'Votre email')">
+
+  <label [innerHTML]="formData.userPassword.label"></label>
+  <input type="text" [(ngModel)]="formData.userPassword.value" name="userPassword" (focus)="deleteError(formData.userPassword, 'Votre mot de passe')">
+
+  <div *ngIf="formType === 'create'">
+    <label [innerHTML]="formData.userRepeatPassword.label"></label>
+    <input type="text" [(ngModel)]="formData.userRepeatPassword.value" name="userRepeatPassword"  (focus)="deleteError(formData.userRepeatPassword, 'Répéter votre mot de passe')">
+
+    <input type="checkbox" [(ngModel)]="formData.userTos.value" name="userTos" (focus)="deleteError(formData.userTos, 'Accépter les CDG')">
+    <label [innerHTML]="formData.userTos.label"></label>
+  </div>
+
+  <button type="submit">Inscription</button> 
+
+</form>

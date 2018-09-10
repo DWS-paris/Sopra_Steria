@@ -4,6 +4,9 @@ Import
   // Angular
   import { Injectable } from '@angular/core';
   import { HttpClient, HttpHeaders } from "@angular/common/http"; // Pour les requêtes HTTP
+
+  // Inner
+  import { UserModel } from "../../shared/_models/user.model";
 // 
 
 
@@ -46,6 +49,12 @@ Configuration et export
         return this.HttpClient.get(
           `${this.apiUrl}?id=${_id}`)
           .toPromise().then(this.getData).catch(this.handleError)
+      }
+
+      // Créer une fonction pour modifier les données d'un utilisateur
+      public editUser = ( _id: number, data: UserModel ): Promise<any> => {
+        return this.HttpClient.patch(`${this.apiUrl}/${_id}`, data)
+        .toPromise().then(this.getData).catch(this.handleError)
       }
     //
 

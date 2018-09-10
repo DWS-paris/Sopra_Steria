@@ -1,35 +1,16 @@
 <app-header></app-header>
 
 <main>
-  <section>
+  <section *ngIf="registerFormData">
     <h2 [textContent]="pageTitle" (click)="formToggle.register = !formToggle.register"></h2>
 
-    <form (submit)="registerUser()" [ngClass]="{ 'isOpen': formToggle.register }"> 
-
-      <label [innerHTML]="registerFormData.userName.label"></label>
-      <input 
-        type="text" 
-        name="userName"
-
-        [(ngModel)]="registerFormData.userName.value" 
-        (focus)="deleteError(registerFormData.userName, 'Nom complet')"
-      >
-      
-      <label [innerHTML]="registerFormData.userEmail.label"></label>
-      <input type="email" [(ngModel)]="registerFormData.userEmail.value" name="userEmail" (focus)="deleteError(registerFormData.userEmail, 'Votre email')">
-
-      <label [innerHTML]="registerFormData.userPassword.label"></label>
-      <input type="text" [(ngModel)]="registerFormData.userPassword.value" name="userPassword" (focus)="deleteError(registerFormData.userPassword, 'Votre mot de passe')">
-
-      <label [innerHTML]="registerFormData.userRepeatPassword.label"></label>
-      <input type="text" [(ngModel)]="registerFormData.userRepeatPassword.value" name="userRepeatPassword"  (focus)="deleteError(registerFormData.userRepeatPassword, 'Répéter votre mot de passe')">
-
-      <input type="checkbox" [(ngModel)]="registerFormData.userTos.value" name="userTos" (focus)="deleteError(registerFormData.userTos, 'Accépter les CDG')">
-      <label [innerHTML]="registerFormData.userTos.label"></label>
-
-      <button type="submit">Inscription</button>
-
-    </form>
+    <app-user-form
+      [ngClass]="{ 'isOpen': formToggle.register }"
+      [formData]="registerFormData"
+      [formType]="'create'"
+      (sendData)="registerUser($event)"
+    >
+    </app-user-form>
   </section>
 
   <section>

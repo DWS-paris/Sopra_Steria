@@ -1,16 +1,23 @@
 <app-header></app-header>
 
 <!-- Attendre le retour de l'api avant d'afficher les données -->
-<main *ngIf="singleUser">
+<main *ngIf="singleUser && singleUserData">
     <section>
         <h2 [textContent]="pageTitle"></h2>
         <article>
-            <h3 [textContent]="singleUser.userName"></h3>
-            <ul class="flexBoxes">
+            <ul [ngClass]="{ 'isOpen': !toggleBoxe }">
+                <li><h3 [textContent]="singleUser.userName"></h3></li>
                 <li [textContent]="singleUser.email"></li>
                 <li [textContent]="singleUser.password"></li>
+                <li><button [textContent]="textButton.edit" (click)="toggleBoxe = true"></button></li>
             </ul>
-            <button [textContent]="editButton"></button>
+            <!-- Formulaire pour modifier l'utilisateur -->
+            <app-user-form
+                [ngClass]="{ 'isOpen': toggleBoxe }"
+                [formData]="singleUserData"
+                [formType]="'edit'"
+                (sendData)="submitForm($event)"
+            ></app-user-form>
         </article>
     </section>
 </main>

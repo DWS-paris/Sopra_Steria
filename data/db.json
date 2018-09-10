@@ -7,10 +7,22 @@
       "password": "azertyuiop"
     },
     {
-      "userName": "Paul Bismuth",
-      "email": "paul@1tourtelle.com",
+      "userName": "Paul une tourtelle",
+      "email": "paul@1tourtelle.fr",
       "password": "qwertyuiop",
       "id": 1
+    },
+    {
+      "email": "foo@fuu.com",
+      "password": "qwertyuiop",
+      "userName": "Jul NY",
+      "id": 2,
+      "user-name": "Toto"
+    },
+    {
+      "user-name": "Toto",
+      "password": "qwertyuiopwdhgw,hsdkjhwsfkjwhfkjxhdf,",
+      "id": 3
     }
   ]
 }
