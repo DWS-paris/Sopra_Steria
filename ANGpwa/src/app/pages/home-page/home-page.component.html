@@ -1,0 +1,13 @@
+<section>
+    <app-login-form
+        [textContent]="textContent"
+        [loginFormData]="loginFormData"
+        (sendData)="loginUser($event)"
+    ></app-login-form>
+
+    <app-register-form
+        [textContent]="textContent"
+        [registerFormData]="registerFormData"
+        (sendData)="registerUser($event)"
+    ></app-register-form>
+</section>

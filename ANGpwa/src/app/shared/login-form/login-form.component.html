@@ -1,0 +1,14 @@
+<form (submit)="submitForm()">
+
+  <div [ngClass]="{ 'error': errors.email }">
+    <label for="email" [textContent]="textContent.login.email"></label>
+    <input type="email" name="email" [(ngModel)]="loginFormData.email" (focus)="errors.email = false">
+  </div>
+
+  <div [ngClass]="{ 'error': errors.password }">
+    <label for="password" [textContent]="textContent.login.password"></label>
+    <input type="password" name="password" [(ngModel)]="loginFormData.password" (focus)="errors.password = false">
+  </div>
+
+  <button type="submit" [textContent]="textContent.register.submitButton"></button>
+</form>

@@ -1,0 +1,57 @@
+<form (submit)="submitForm()">
+  <fieldset>
+    <legend [textContent]="textContent.register.about.title"></legend>
+
+    <div [ngClass]="{ 'error': errors.firstName }">
+      <label for="firstName" [textContent]="textContent.register.about.firstName"></label>
+      <input 
+        type="text" name="firstName" 
+        [(ngModel)]="registerFormData.firstName"
+        (focus)="errors.firstName = false"
+      >
+    </div>
+
+    <div [ngClass]="{ 'error': errors.lastName }">
+      <label for="lastName" [textContent]="textContent.register.about.lastName"></label>
+      <input 
+        type="text" name="lastName" 
+        [(ngModel)]="registerFormData.lastName"
+        (focus)="errors.lastName = false"
+      >
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend [textContent]="textContent.register.login.title"></legend>
+
+    <div [ngClass]="{ 'error': errors.email }">
+      <label for="email" [textContent]="textContent.register.login.email"></label>
+      <input 
+        type="email" name="email" 
+        [(ngModel)]="registerFormData.email"
+        (focus)="errors.email = false"
+      >
+    </div>
+
+    <div [ngClass]="{ 'error': errors.password }">
+      <label for="password" [textContent]="textContent.register.login.password"></label>
+      <input 
+        type="password" name="password" 
+        [(ngModel)]="registerFormData.password"
+        (focus)="errors.password = false"
+      >
+    </div>
+
+    <p [ngClass]="{ 'error': errors.cgu }">
+      <input 
+        type="checkbox" name="cgu" 
+        [(ngModel)]="registerFormData.cgu"
+        (focus)="errors.cgu = false"
+      > 
+      <label for="cgu" [textContent]="textContent.register.cguLabel"></label>
+    </p>
+  </fieldset>
+
+  <button type="submit" [textContent]="textContent.register.submitButton"></button>
+</form>
