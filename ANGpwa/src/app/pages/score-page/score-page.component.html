@@ -1,3 +1,11 @@
-<p>
-  score-page works!
-</p>
+<section *ngIf="scoreCollection">
+
+  <!-- Itération sur une collection de données -->
+  <ul>
+    <li *ngFor="let item of scoreCollection">
+      <p><b [textContent]="item.score"></b></p>
+      <p [textContent]="item.userName + ' / ' + item.humanDate"></p>
+    </li>
+  </ul>
+
+</section>
