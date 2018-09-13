@@ -3,6 +3,10 @@ Import
 */
   // Angular
   import { Component, OnInit } from '@angular/core';
+  import { Router } from "@angular/router";
+
+  // Outter
+  import { CookieService } from 'ngx-cookie-service'; //=> Gestion des cookies
 
   // Inner
   import { UserModel } from "../../shared/_models/user.model";
@@ -30,10 +34,13 @@ Export
       public textContent: any;
       public registerFormData: UserModel;
       public loginFormData: UserModel;
+      public toggleBoxes: any;
     //
 
     constructor(
-      private UserService: UserService
+      private UserService: UserService,
+      private CookieService: CookieService,
+      private Router: Router
     ) { 
       // Ajouter des valeurs aux variables
       this.textContent = {
@@ -72,6 +79,11 @@ Export
         email: '',
         password: ''
       }
+
+      this.toggleBoxes = {
+        login: false,
+        register: false
+      }
     };
 
     /*
@@ -98,6 +110,12 @@ Export
           
           // Enregister le token dans le navigateur
           localStorage.setItem('tap-connect', apiResponse.data.token)
+
+          // Enregistrer le cookie dans le navigateur
+          this.CookieService.set('tap-cookie', apiResponse.data.token)
+
+          // Rédiriger l'utilisateur vers la page /game
+          this.Router.navigateByUrl('/game');
         })
         .catch( apiResponse => {
           console.error(apiResponse)
@@ -106,6 +124,7 @@ Export
     //
 
     ngOnInit() {
+      localStorage.getItem('tap-connect') ? this.Router.navigateByUrl('/game') : null
     }
 
   }

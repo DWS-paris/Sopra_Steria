@@ -7,9 +7,13 @@ Import
   import { RouterModule } from "@angular/router";
   import { HttpClientModule } from "@angular/common/http";
 
+  // Outter
+  import { CookieService } from 'ngx-cookie-service'; //=> Gestion des cookies
+
   // Inner
   import { AppComponent } from './app.component';
   import { MainRouter } from "./app.router";
+  import { HeaderModule } from "./shared/header/module";
 //
 
 /*
@@ -17,13 +21,13 @@ Definition
 */
   @NgModule({
     declarations: [
-      AppComponent
+      AppComponent,
     ],
     imports: [
-      BrowserModule, RouterModule, HttpClientModule, MainRouter
+      BrowserModule, RouterModule, HttpClientModule, MainRouter, HeaderModule
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+    providers: [ CookieService ],
+    bootstrap: [ AppComponent ]
   })
 //
 

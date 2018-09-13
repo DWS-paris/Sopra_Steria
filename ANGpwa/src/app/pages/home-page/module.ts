@@ -3,6 +3,7 @@ Import
 */
     // Angular
     import { NgModule } from "@angular/core";
+    import { CommonModule } from "@angular/common"; //=> pour *ngIf, *ngFor, ...
 
     // Inner
     import { HomePageComponent } from "./home-page.component";
@@ -20,7 +21,7 @@ Définition
         declarations: [ HomePageComponent ],
 
         // Injecter le/s module/s
-        imports: [ Router, RegisterFormModule, LoginFormModule ]
+        imports: [ CommonModule, Router, RegisterFormModule, LoginFormModule ]
     })
 //
 

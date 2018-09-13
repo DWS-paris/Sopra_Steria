@@ -1,3 +1,10 @@
-<p>
-  game-page works!
-</p>
+<section>
+  <article (click)="tapping()">
+    <img [src]="'/assets/img/tapOff.png'" [alt]="'Tap is off'" *ngIf="!tapIsOn">
+    <img [src]="'/assets/img/tapOn.png'" [alt]="'Tap is on'" *ngIf="tapIsOn">
+  </article>
+
+  <aside>
+    <div [style.width]="timeAmount + '%'"></div>
+  </aside>
+</section>

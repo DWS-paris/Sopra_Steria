@@ -3,7 +3,7 @@ Import
 */
   // Angular
   import { Injectable } from '@angular/core';
-  import { HttpClient } from "@angular/common/http";
+  import { HttpClient, HttpHeaders } from "@angular/common/http";
 
   // Inner
   import { UserModel } from "../../shared/_models/user.model";
@@ -21,6 +21,7 @@ Definition & export
     Variables
     */
       private apiUrl: string;
+      private myHeader: HttpHeaders;
     //
 
     constructor(
@@ -28,7 +29,10 @@ Definition & export
       private HttpClient: HttpClient
     ) { 
       // Ajouter de la valeur aux variables
-      this.apiUrl = 'https://tap.dwsapp.io/api'
+      this.apiUrl = 'https://tap.dwsapp.io/api';
+
+      this.myHeader = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('tap-connect')}`)
     }
 
     /*
@@ -43,6 +47,12 @@ Definition & export
       // Créer une fonction pour connecter un utilisateur
       public loginUser = ( data: UserModel ): Promise<any> => {
         return this.HttpClient.post(`${this.apiUrl}/auth/login`, data)
+        .toPromise().then(this.getData).catch(this.handelError);
+      }
+
+      // Créer une fonction pour vértifier le token utilisateur
+      public checkUserToken = (): Promise<any> => {
+        return this.HttpClient.get(`${this.apiUrl}/user/me`, { headers: this.myHeader } )
         .toPromise().then(this.getData).catch(this.handelError);
       }
     //

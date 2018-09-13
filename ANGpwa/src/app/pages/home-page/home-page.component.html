@@ -1,11 +1,23 @@
 <section>
+    <h2 
+        [textContent]="textContent.login.title"
+        (click)="toggleBoxes.login = !toggleBoxes.login; toggleBoxes.register = false"
+    ></h2>
     <app-login-form
+        *ngIf="toggleBoxes.login"
         [textContent]="textContent"
         [loginFormData]="loginFormData"
         (sendData)="loginUser($event)"
     ></app-login-form>
+</section>
 
+<section>
+    <h2 
+        [textContent]="textContent.register.title"
+        (click)="toggleBoxes.register = !toggleBoxes.register; toggleBoxes.login = false"
+    ></h2>
     <app-register-form
+        *ngIf="toggleBoxes.register"
         [textContent]="textContent"
         [registerFormData]="registerFormData"
         (sendData)="registerUser($event)"

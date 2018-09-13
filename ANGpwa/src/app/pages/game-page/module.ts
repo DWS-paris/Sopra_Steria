@@ -3,6 +3,7 @@ Import
 */
     // Angular
     import { NgModule } from "@angular/core";
+    import { CommonModule } from "@angular/common";
 
     // Inner
     import { GamePageComponent } from "./game-page.component";
@@ -18,7 +19,7 @@ Définition
         declarations: [ GamePageComponent ],
 
         // Injecter le/s module/s
-        imports: [ Router ]
+        imports: [ CommonModule, Router ]
     })
 //
 
