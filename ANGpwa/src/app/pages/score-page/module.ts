@@ -8,6 +8,7 @@ Import
     // Inner
     import { ScorePageComponent } from "./score-page.component";
     import { Router } from "./route";
+    import { HeaderModule } from "../../shared/header/module";
 //
 
 
@@ -19,7 +20,7 @@ Définition
         declarations: [ ScorePageComponent ],
 
         // Injecter le/s module/s
-        imports: [ CommonModule, Router ]
+        imports: [ CommonModule, Router, HeaderModule ]
     })
 //
 

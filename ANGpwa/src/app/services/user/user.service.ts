@@ -21,7 +21,6 @@ Definition & export
     Variables
     */
       private apiUrl: string;
-      private myHeader: HttpHeaders;
     //
 
     constructor(
@@ -30,9 +29,6 @@ Definition & export
     ) { 
       // Ajouter de la valeur aux variables
       this.apiUrl = 'https://tap.dwsapp.io/api';
-
-      this.myHeader = new HttpHeaders()
-      .set('Authorization', `Bearer ${localStorage.getItem('tap-connect')}`)
     }
 
     /*
@@ -51,8 +47,13 @@ Definition & export
       }
 
       // Créer une fonction pour vértifier le token utilisateur
-      public checkUserToken = (): Promise<any> => {
-        return this.HttpClient.get(`${this.apiUrl}/user/me`, { headers: this.myHeader } )
+      public checkUserToken = (userToken: string): Promise<any> => {
+        
+        // Définition du header de la requête
+        const myHeader = new HttpHeaders()
+        .set('Authorization', `Bearer ${userToken}`)
+
+        return this.HttpClient.get(`${this.apiUrl}/user/me`, { headers: myHeader } )
         .toPromise().then(this.getData).catch(this.handelError);
       }
     //

@@ -1,9 +1,7 @@
-<section *ngIf="vueContent">
-  <h1 [innerHTML]="vueContent.title"></h1>
-  <p [innerHTML]="vueContent.subTitle"></p>
+<h1 [innerHTML]="title"></h1>
+<p [innerHTML]="subTitle"></p>
 
-  <nav *ngIf="activPath !== 'home'">
-    <button [textContent]="vueContent.button" (click)="changeVue(activPath)"></button>
-    <button [textContent]="vueContent.logout"></button>
-  </nav>
-</section>
+<nav *ngIf="path !== '/'">
+    <button [textContent]="nav.content" (click)="navigateTo(nav.path)"></button>
+    <button [textContent]="logoutButton" (click)="logOutUser()"></button>
+</nav>

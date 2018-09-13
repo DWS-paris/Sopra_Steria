@@ -10,6 +10,7 @@ Import
     import { Router } from "./route";
     import { RegisterFormModule } from "../../shared/register-form/module";
     import { LoginFormModule } from "../../shared/login-form/module";
+    import { HeaderModule } from "../../shared/header/module";
 //
 
 
@@ -21,7 +22,7 @@ Définition
         declarations: [ HomePageComponent ],
 
         // Injecter le/s module/s
-        imports: [ CommonModule, Router, RegisterFormModule, LoginFormModule ]
+        imports: [ CommonModule, Router, RegisterFormModule, LoginFormModule, HeaderModule ]
     })
 //
 

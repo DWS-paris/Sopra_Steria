@@ -4,6 +4,7 @@ Import
   // Angular
   import { Injectable } from '@angular/core';
   import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { TapModel } from '../../shared/_models/tap.model';
 //
 
 
@@ -37,8 +38,28 @@ Definition & export
     Methodes
     */
       // Créer une fonction pour récupérer la liste de score
-      public getScores = (): Promise<any> => {
-        return this.HttpClient.get(`${this.apiUrl}/tap`, { headers: this.myHeader })
+      public getScores = (token: string): Promise<any> => {
+        // Définition du header de la requête
+        const myHeader = new HttpHeaders().set( 'Authorization', `Bearer ${token}` );
+
+        return this.HttpClient.get(`${this.apiUrl}/tap`, { headers: myHeader })
+        .toPromise().then(this.getData).catch(this.handelError)
+      }
+
+      // Créer une fonction pour enregistrer un score
+      public saveScore = ( data: TapModel, token: string ): Promise<any> => {
+        // Définition du header de la requête
+        const myHeader = new HttpHeaders().set( 'Authorization', `Bearer ${token}` );
+        
+        // Définition des données à sauvegarder
+        const dataToSave: TapModel = {
+          score: data.score,
+          userName: data.userName,
+          humanDate: data.humanDate
+        }
+
+        // Requête HTTP
+        return this.HttpClient.post(`${this.apiUrl}/tap/register`, dataToSave, { headers: myHeader })
         .toPromise().then(this.getData).catch(this.handelError)
       }
     //

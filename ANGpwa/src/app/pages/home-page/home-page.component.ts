@@ -44,6 +44,11 @@ Export
     ) { 
       // Ajouter des valeurs aux variables
       this.textContent = {
+        header: {
+          title: 'Welcome on <em>Tapboard</em>',
+          subTitle: 'Register or login to start tapping',
+          path: '/'
+        },
         login: {
           title: 'Login',
           email: 'Email',

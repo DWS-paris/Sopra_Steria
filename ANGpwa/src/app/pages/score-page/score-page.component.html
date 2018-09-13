@@ -1,3 +1,12 @@
+<header>
+  <app-header
+      [title]="textContent.header.title"
+      [subTitle]="textContent.header.subTitle"
+      [path]="textContent.header.path"
+      [nav]="textContent.header.nav"
+  ></app-header>
+</header>
+
 <section *ngIf="scoreCollection">
 
   <!-- Itération sur une collection de données -->

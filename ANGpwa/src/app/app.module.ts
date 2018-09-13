@@ -13,7 +13,6 @@ Import
   // Inner
   import { AppComponent } from './app.component';
   import { MainRouter } from "./app.router";
-  import { HeaderModule } from "./shared/header/module";
 //
 
 /*
@@ -24,7 +23,7 @@ Definition
       AppComponent,
     ],
     imports: [
-      BrowserModule, RouterModule, HttpClientModule, MainRouter, HeaderModule
+      BrowserModule, RouterModule, HttpClientModule, MainRouter
     ],
     providers: [ CookieService ],
     bootstrap: [ AppComponent ]
