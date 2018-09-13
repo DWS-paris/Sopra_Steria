@@ -5,6 +5,9 @@ Import
     import { NgModule } from "@angular/core";
     import { CommonModule } from "@angular/common";
 
+    // Outter
+    import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
     // Inner
     import { PopinComponent } from "./popin.component";
 //
@@ -17,7 +20,7 @@ Definition
         declarations: [ PopinComponent ],
 
         // Importer les modules
-        imports: [ CommonModule ],
+        imports: [ CommonModule, AngularFontAwesomeModule ],
 
         // Exporter le composant
         exports: [ PopinComponent ]

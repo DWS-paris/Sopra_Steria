@@ -35,6 +35,7 @@ Export
       public registerFormData: UserModel;
       public loginFormData: UserModel;
       public toggleBoxes: any;
+      public popinContent: any;
     //
 
     constructor(
@@ -124,6 +125,12 @@ Export
         })
         .catch( apiResponse => {
           console.error(apiResponse)
+
+          // Définir les valeur de popinContent
+          this.popinContent = {
+            title: apiResponse.error.message,
+            content: apiResponse.error.error,
+          }
         })
       };
     //

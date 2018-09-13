@@ -1,6 +1,10 @@
-<section>
+<section
+  *ngIf="popinContent"
+  [ngClass]="{ 'open': popinContent, 'animated': isOpen }"
+>
   <article>
-    <h3>Titre popin</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ducimus laudantium fugit commodi illo accusantium neque autem reiciendis nihil illum suscipit quam consectetur asperiores, odio ea doloremque similique iste omnis.</p>
+    <fa name="times" animation="none" (click)="closePopin()"></fa> 
+    <h3 [textContent]="popinContent.title"></h3>
+    <p  [textContent]="popinContent.content"></p>
   </article>
 </section>

@@ -1,4 +1,4 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges,  Input } from '@angular/core';
 
 @Component({
   selector: 'app-popin',
@@ -11,6 +11,16 @@ import { Component, OnInit, input } from '@angular/core';
       width: 100%; 
       height: 100%; 
       background: rgba(0, 0, 0, .5); 
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    section.open{
+      top: 0;
+    }
+
+    section.open.animated{
+      opacity: 1;
     }
 
     article {
@@ -28,13 +38,51 @@ import { Component, OnInit, input } from '@angular/core';
     p {
       margin-bottom: 0;
     }
+
+    fa {
+      position: absolute;
+      top: -3.5rem;
+      right: 0;
+      background: black;
+      padding: .5rem 1rem;
+      color: white;
+    }
   `]
 })
-export class PopinComponent implements OnInit {
+export class PopinComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  /*
+  Variables
+  */
+    @Input() popinContent: any;
+    public isOpen: boolean;
+  //
+
+  constructor() {
+    this.isOpen = false
+  }
+
+  /*
+  Methodes
+  */
+    // Créer une fonction pour fermer le popin
+    public closePopin = () => {
+      // Supprimer la classe isOpen
+      this.isOpen = false;
+
+      // Attendre le temps de l'animation pour vider popinContent
+      setTimeout( () => this.popinContent = undefined, 500 );
+    }
+  //
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges( change: SimpleChanges ){
+    if( change.popinContent.currentValue !== undefined ){
+      setTimeout( () => this.isOpen = true, 100 )
+    }
   }
 
 }
