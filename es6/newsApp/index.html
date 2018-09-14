@@ -5,9 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>News App</title>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- Importer le manifest -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#606c76">
+        <meta name="application-name" content="News Application">
+        <meta name="Description" content="News Application vous permet de suivre l'actualité en direct sur votre smartphone">
+        <meta name="msapplication-starturl" content="index.htlm">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="./img/android/android-launchericon-192-192.png">
 
         <style>
             body{padding: 5rem}
@@ -16,7 +23,8 @@
     <body>
         
         <header>
-            <h1>News app</h1>
+            <img src="./img/newsApp.jpg" alt="Logo de l'application">
+            <h1>News application</h1>
             <select id="sourceSelector"></select>
         </header>
 

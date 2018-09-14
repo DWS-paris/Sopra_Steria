@@ -105,5 +105,17 @@ Lancer l'application
             // Charger la liste d'articles
             getArticles(event.target.value);
         })
+
+        // Instancier le service worker
+        if( 'serviceWorker' in navigator ){
+            try {
+                navigator.serviceWorker.register('service-worker.js');
+                console.log('ServiceWorker registrated');
+                
+            } catch (error) {
+                console.log(error);
+                console.error('ServiceWorker registration failed...');
+            };
+        };
     });
 //
