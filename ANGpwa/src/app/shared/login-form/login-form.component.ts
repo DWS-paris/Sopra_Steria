@@ -34,8 +34,8 @@ Definition & export
       // Créer un événement
       @Output() sendData = new EventEmitter();
 
-      private formError: number;
-      private errors: any;
+      public formError: number;
+      public errors: any;
     //
 
     constructor() {

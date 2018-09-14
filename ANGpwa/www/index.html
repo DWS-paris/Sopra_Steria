@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ANGpwa</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.dec38e7b8055be6979ea.css"></head>
+
+<link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#606c76">
+  <meta name="application-name" content="News Application">
+  <meta name="Description" content="With TapBoard you can Tap has you whant">
+
+  <script>
+    // Instancier le service worker
+    if( 'serviceWorker' in navigator ){
+      try {
+          navigator.serviceWorker.register('service-worker.js');
+          console.log('ServiceWorker registrated');
+          
+      } catch (error) {
+          console.log(error);
+          console.error('ServiceWorker registration failed...');
+      };
+    };
+  </script>
+<body>
+  <app-root></app-root>
+<script type="text/javascript" src="runtime.b881bbf7e10595b57d9f.js"></script><script type="text/javascript" src="polyfills.f7d297ab9e02beda264c.js"></script><script type="text/javascript" src="main.b81f14c85bdb9168fbfb.js"></script></body>
+</html>
