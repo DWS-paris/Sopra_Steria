@@ -33,8 +33,29 @@ Définition des stratégies de gestion du cahce
 
         // Renvoyer le résultat : données du cache ou du serveur
         return cachedResponse || fetch(request);
+    };
+
+    const networkFirst = async request => {
+        // Création d'un cahe pour les données dynamiques
+        const dynamicCache = await caches.open('dynamic-assets');
+
+        // Récupération des données depuis le serveur/api
+        try {
+            // Ajouter les données dans le cache dynamique
+            const response = await fetch(request);
+            dynamicCache.put( request, response.clone() );
+
+            // Renvoyer la réponse
+            return response;
+
+        } catch (error) {
+            // Récupérer les donnes du cache dynamiqiue
+            const cachedResponse = await dynamicCache.match(request);
+
+            // Renvoyer les données du cache dynamique
+            return cachedResponse || await caches.match('test');
+        }
     }
-    
 //
 
 
@@ -50,12 +71,12 @@ Récupération des données depuis le service worker
 
         // Gestion de la stratégie de cache
         if( url.origin === location.origin ){
-            //  Récupérer les données depuis le cache
+            //  Récupérer les données en priorité depuis le cache
             event.respondWith( cachFirst(request) );
 
         } else{
-            // Récupérer les données depuis le server/api
-            console.log('networkFirst');
+            // Récupérer les données en priorité depuis le serveur/api
+            event.respondWith( networkFirst(request) );
         };
     })
 //
